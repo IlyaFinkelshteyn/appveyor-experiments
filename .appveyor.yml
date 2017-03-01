@@ -21,4 +21,9 @@ install:
 build: false
 
 test_script:
-  - '%CYG_BASH% -lc "which unzip && unzip -v"'
+  - '%CYG_BASH% -lc "which unzip"'
+  - '%CYG_BASH% -lc "unzip -v"'
+
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
